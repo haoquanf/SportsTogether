@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { AuthCard, Divider } from "@/components/auth-card";
 import { AuthForm } from "@/components/auth-form";
-import { GoogleButton } from "@/components/google-button";
+import { GoogleButton, googleAuthEnabled } from "@/components/google-button";
 import { logIn } from "@/app/auth/actions";
 
 const ERRORS: Record<string, string> = {
@@ -15,8 +15,12 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   return (
     <AuthCard title="Welcome back">
       {error && ERRORS[error] && <p role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{ERRORS[error]}</p>}
-      <GoogleButton />
-      <Divider />
+      {googleAuthEnabled && (
+        <>
+          <GoogleButton />
+          <Divider />
+        </>
+      )}
       <AuthForm
         action={logIn}
         submitLabel="Log in"

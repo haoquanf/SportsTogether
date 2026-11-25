@@ -1,14 +1,18 @@
 import Link from "next/link";
 import { AuthCard, Divider } from "@/components/auth-card";
 import { AuthForm } from "@/components/auth-form";
-import { GoogleButton } from "@/components/google-button";
+import { GoogleButton, googleAuthEnabled } from "@/components/google-button";
 import { signUp } from "@/app/auth/actions";
 
 export default function SignUpPage() {
   return (
     <AuthCard title="Create your account" subtitle="Free forever for groups, events and 3 AI analyses a month.">
-      <GoogleButton />
-      <Divider />
+      {googleAuthEnabled && (
+        <>
+          <GoogleButton />
+          <Divider />
+        </>
+      )}
       <AuthForm
         action={signUp}
         submitLabel="Sign up"
