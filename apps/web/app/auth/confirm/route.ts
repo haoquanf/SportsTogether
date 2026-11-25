@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     if (!error && data.user) {
       if (type === "recovery") return NextResponse.redirect(`${origin}/reset-password`);
       const { data: profile } = await supabase.from("profiles").select("onboarded").eq("id", data.user.id).single();
-      const fallback = profile && !profile.onboarded ? "/onboarding" : "/profile";
+      const fallback = profile && !profile.onboarded ? "/onboarding" : "/home";
       const next = nextParam && nextParam.startsWith("/") && !nextParam.startsWith("//") ? nextParam : fallback;
       return NextResponse.redirect(`${origin}${profile && !profile.onboarded ? "/onboarding" : next}`);
     }

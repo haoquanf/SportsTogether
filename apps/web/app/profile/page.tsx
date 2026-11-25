@@ -15,7 +15,7 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
-      {updated && NOTICES[updated] && <p role="status" className="rounded-lg bg-brand-50 p-3 text-brand-700">{NOTICES[updated]}</p>}
+      {updated && NOTICES[updated] && <p role="status" className="rounded-lg bg-brand-50 p-3 font-medium text-brand-700">✓ {NOTICES[updated]}</p>}
       <section className="card flex items-center gap-4">
         <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-brand-100 text-2xl font-bold text-brand-700">
           {profile.avatar_url ? (
@@ -37,15 +37,16 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
         <ProfileForm profile={profile} submitLabel="Save changes" />
       </section>
 
-      <section className="card border-red-200">
-        <h2 className="text-lg font-semibold text-red-700">Delete account</h2>
+      <details className="card border-red-200" open={error === "confirm"}>
+        <summary className="cursor-pointer text-sm font-medium text-slate-500">Delete my account</summary>
+        <h2 className="mt-4 text-lg font-semibold text-red-700">Delete account</h2>
         <p className="mt-1 mb-4 text-sm text-slate-600">This removes your profile and all your videos for good. Type DELETE to confirm.</p>
         {error === "confirm" && <p role="alert" className="mb-2 text-sm text-red-600">Please type DELETE exactly.</p>}
         <form action={deleteAccount} className="flex gap-2">
           <input name="confirm" aria-label="Type DELETE to confirm" className="input max-w-40" autoComplete="off" />
           <button className="btn border border-red-300 text-red-700 hover:bg-red-50">Delete my account</button>
         </form>
-      </section>
+      </details>
     </div>
   );
 }

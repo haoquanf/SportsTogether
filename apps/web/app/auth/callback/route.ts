@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
 function safeNext(value: string | null) {
-  return value && value.startsWith("/") && !value.startsWith("//") ? value : "/profile";
+  return value && value.startsWith("/") && !value.startsWith("//") ? value : "/home";
 }
 
 // Google sign-in, email confirmation and password reset links all land here.

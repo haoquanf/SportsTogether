@@ -45,7 +45,7 @@ export async function logIn(_: FormState, formData: FormData): Promise<FormState
     if (error.code === "email_not_confirmed") return { error: "Please confirm your email first. Check your inbox for the link." };
     return { error: "That email and password don't match." };
   }
-  redirect("/profile");
+  redirect("/home");
 }
 
 export async function signInWithGoogle() {
@@ -53,7 +53,7 @@ export async function signInWithGoogle() {
   const supabase = await createClient();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
-    options: { redirectTo: `${await siteUrl()}/auth/callback?next=/profile` },
+    options: { redirectTo: `${await siteUrl()}/auth/callback?next=/home` },
   });
   if (error || !data.url) redirect("/login?error=google");
   redirect(data.url);

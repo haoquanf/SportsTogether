@@ -21,7 +21,7 @@ export default async function Home() {
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           {current ? (
-            <Link href="/profile" className="btn bg-white text-brand-700 hover:bg-brand-50">Go to my profile</Link>
+            <Link href="/home" className="btn bg-white text-brand-700 hover:bg-brand-50">Go to my home</Link>
           ) : (
             <>
               <Link href="/signup" className="btn bg-white text-brand-700 hover:bg-brand-50">Get started free</Link>

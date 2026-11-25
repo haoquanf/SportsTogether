@@ -65,7 +65,7 @@ async function saveProfileInner(formData: FormData): Promise<FormState> {
   }
 
   revalidatePath("/", "layout");
-  redirect("/profile?updated=profile");
+  redirect(profile?.onboarded ? "/profile?updated=profile" : "/home?welcome=1");
 }
 
 export async function deleteAccount(formData: FormData) {

@@ -4,7 +4,7 @@ import { ProfileForm } from "@/components/profile-form";
 
 export default async function OnboardingPage() {
   const { profile } = await requireUser();
-  if (profile?.onboarded) redirect("/profile");
+  if (profile?.onboarded) redirect("/home");
   return (
     <div className="mx-auto max-w-2xl">
       <div className="card">

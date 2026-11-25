@@ -13,6 +13,7 @@ export async function SiteHeader() {
         <nav className="flex items-center gap-3 text-sm">
           {current ? (
             <>
+              <Link href="/home" className="font-medium hover:text-brand-700">Home</Link>
               <Link href="/profile" className="font-medium hover:text-brand-700">
                 {current.profile?.display_name || "My profile"}
               </Link>
