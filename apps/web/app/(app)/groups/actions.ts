@@ -6,7 +6,7 @@ import { SKILL_LEVELS } from "@sportsapp/shared";
 import { requireUser } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { LAUNCH_TZ, zonedInputToDate } from "@/lib/time";
-import type { FormState } from "@/app/auth/actions";
+import type { FormState } from "@/app/(app)/auth/actions";
 
 const isSkill = (s: string) => SKILL_LEVELS.some((l) => l.id === s);
 const str = (f: FormData, k: string) => String(f.get(k) ?? "").trim();

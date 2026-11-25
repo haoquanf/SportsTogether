@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { addComment, deleteComment, reportComment } from "@/app/groups/actions";
+import { addComment, deleteComment, reportComment } from "@/app/(app)/groups/actions";
 import type { CommentRow } from "@/lib/groups";
 import { LAUNCH_TZ } from "@/lib/time";
 import { Avatar } from "./avatar";

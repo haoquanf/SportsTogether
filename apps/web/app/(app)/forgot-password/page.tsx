@@ -1,6 +1,6 @@
 import { AuthCard } from "@/components/auth-card";
 import { AuthForm } from "@/components/auth-form";
-import { requestPasswordReset } from "@/app/auth/actions";
+import { requestPasswordReset } from "@/app/(app)/auth/actions";
 
 export default function ForgotPasswordPage() {
   return (

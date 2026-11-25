@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AuthCard, Divider } from "@/components/auth-card";
 import { AuthForm } from "@/components/auth-form";
 import { GoogleButton, googleAuthEnabled } from "@/components/google-button";
-import { logIn } from "@/app/auth/actions";
+import { logIn } from "@/app/(app)/auth/actions";
 
 const ERRORS: Record<string, string> = {
   google: "Google sign-in didn't work. Please try again.",

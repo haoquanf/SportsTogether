@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import type { FormState } from "@/app/auth/actions";
+import type { FormState } from "@/app/(app)/auth/actions";
 
 type Field = { name: string; label: string; type?: string; autoComplete?: string };
 

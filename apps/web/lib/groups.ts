@@ -164,3 +164,16 @@ export async function sessionsPlayed(userId: string) {
     .lt("events.ends_at", new Date().toISOString());
   return count ?? 0;
 }
+
+export async function upcomingSessions(limit = 30) {
+  const supabase = await createClient();
+  const now = new Date();
+  const { data } = await supabase
+    .from("events")
+    .select(`${EVENT_COLS}, groups(name, area)`)
+    .gte("starts_at", now.toISOString())
+    .lte("starts_at", new Date(now.getTime() + 14 * 86400_000).toISOString())
+    .order("starts_at")
+    .limit(limit);
+  return (data ?? []) as unknown as (EventRow & { groups: { name: string; area: string } | null })[];
+}

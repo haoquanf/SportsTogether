@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { SKILL_LEVELS } from "@sportsapp/shared";
-import { createGroup } from "@/app/groups/actions";
+import { createGroup } from "@/app/(app)/groups/actions";
 import { LocationPicker } from "@/components/location-picker";
 
 export function NewGroupForm() {

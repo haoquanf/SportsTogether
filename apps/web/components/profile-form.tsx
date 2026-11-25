@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { AVAILABILITY, HANDEDNESS, PLAY_FORMATS, PROFILE_VISIBILITY, SKILL_LEVELS, SPORTS } from "@sportsapp/shared";
-import { saveProfile } from "@/app/profile/actions";
+import { saveProfile } from "@/app/(app)/profile/actions";
 import type { Profile } from "@/lib/auth";
 import { AvatarUpload } from "./avatar-upload";
 

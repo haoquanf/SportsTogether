@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AuthCard, Divider } from "@/components/auth-card";
 import { AuthForm } from "@/components/auth-form";
 import { GoogleButton, googleAuthEnabled } from "@/components/google-button";
-import { signUp } from "@/app/auth/actions";
+import { signUp } from "@/app/(app)/auth/actions";
 
 export default function SignUpPage() {
   return (

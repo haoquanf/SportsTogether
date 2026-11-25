@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { SKILL_LEVELS } from "@sportsapp/shared";
-import { createEvent } from "@/app/groups/actions";
+import { createEvent } from "@/app/(app)/groups/actions";
 import { LocationPicker } from "@/components/location-picker";
 import type { LatLng } from "@/lib/geo";
 

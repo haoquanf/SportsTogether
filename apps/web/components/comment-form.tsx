@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useEffect, useRef } from "react";
-import type { FormState } from "@/app/auth/actions";
+import type { FormState } from "@/app/(app)/auth/actions";
 
 export function CommentForm({ action }: { action: (s: FormState, f: FormData) => Promise<FormState> }) {
   const [state, run, pending] = useActionState(action, {});

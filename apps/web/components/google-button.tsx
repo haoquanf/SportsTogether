@@ -1,4 +1,4 @@
-import { signInWithGoogle } from "@/app/auth/actions";
+import { signInWithGoogle } from "@/app/(app)/auth/actions";
 
 // Shown only once Google sign-in is switched on in Supabase (set NEXT_PUBLIC_GOOGLE_AUTH_ENABLED=true).
 export const googleAuthEnabled = process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";

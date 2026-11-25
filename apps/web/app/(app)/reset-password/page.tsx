@@ -1,6 +1,6 @@
 import { AuthCard } from "@/components/auth-card";
 import { AuthForm } from "@/components/auth-form";
-import { updatePassword } from "@/app/auth/actions";
+import { updatePassword } from "@/app/(app)/auth/actions";
 import { requireUser } from "@/lib/auth";
 
 export default async function ResetPasswordPage() {

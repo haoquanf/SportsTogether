@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import type { FormState } from "@/app/auth/actions";
+import type { FormState } from "@/app/(app)/auth/actions";
 
 /** A one-click button that runs a server action and shows its message. */
 export function ActionButton({

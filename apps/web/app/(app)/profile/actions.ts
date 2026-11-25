@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { AVAILABILITY, HANDEDNESS, PLAY_FORMATS, PROFILE_VISIBILITY, SKILL_LEVELS, SPORTS } from "@sportsapp/shared";
 import { createClient } from "@/lib/supabase/server";
 import { requireUser } from "@/lib/auth";
-import type { FormState } from "@/app/auth/actions";
+import type { FormState } from "@/app/(app)/auth/actions";
 
 const MIN_AGE = 13;
 

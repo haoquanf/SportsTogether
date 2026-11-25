@@ -8,7 +8,7 @@ import { Avatar, Badge } from "@/components/avatar";
 import { ActionButton } from "@/components/action-button";
 import { Comments } from "@/components/comments";
 import { Map } from "@/components/map";
-import { cancelRsvp, joinGroup, rsvp } from "@/app/groups/actions";
+import { cancelRsvp, joinGroup, rsvp } from "@/app/(app)/groups/actions";
 
 export default async function EventPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
