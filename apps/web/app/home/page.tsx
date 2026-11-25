@@ -25,11 +25,12 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           <p className="mt-2 text-brand-50">
             Your profile is saved: {level} badminton player in {profile.city}.
           </p>
+          <Link href="/profile" className="btn mt-5 bg-white text-brand-700 hover:bg-brand-50">View my profile</Link>
         </section>
       ) : (
         <section>
           <h1 className="text-3xl font-bold">Hi {firstName} 👋</h1>
-          <p className="mt-1 text-slate-600">{level} · {profile.city}</p>
+          <p className="mt-1 text-slate-600">{level} · {profile.city} · <Link href="/profile" className="font-medium text-brand-700">View profile</Link></p>
         </section>
       )}
 
@@ -47,7 +48,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
       </section>
 
       <p className="text-sm text-slate-500">
-        Want to change your details? <Link href="/profile" className="font-medium text-brand-700">Edit your profile</Link>
+        Want to change your details? <Link href="/profile/edit" className="font-medium text-brand-700">Edit your profile</Link>
       </p>
     </div>
   );

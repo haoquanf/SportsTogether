@@ -1,7 +1,7 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { SKILL_LEVELS, SPORTS } from "@sportsapp/shared";
 import { requireUser } from "@/lib/auth";
-import { ProfileForm } from "@/components/profile-form";
 import { deleteAccount } from "./actions";
 
 const NOTICES: Record<string, string> = { profile: "Profile saved.", password: "Password updated." };
@@ -10,31 +10,54 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
   const { user, profile } = await requireUser();
   if (!profile?.onboarded) redirect("/onboarding");
   const { updated, error } = await searchParams;
-  const level = SKILL_LEVELS.find((l) => l.id === profile.skill_level)?.label;
+  const level = SKILL_LEVELS.find((l) => l.id === profile.skill_level);
   const sports = profile.sports.map((id) => SPORTS.find((s) => s.id === id)?.label ?? id).join(", ");
+  const consentDate = profile.video_consent_at
+    ? new Date(profile.video_consent_at).toLocaleDateString("en-US", { dateStyle: "medium", timeZone: "America/New_York" })
+    : null;
+
+  const rows: [string, React.ReactNode][] = [
+    ["Name", profile.display_name],
+    ["Email", user.email],
+    ["City", profile.city],
+    ["Birth year", profile.birth_year],
+    ["Sports", sports],
+    ["Skill level", level ? <>{level.label} <span className="text-slate-500">· {level.hint}</span></> : "Not set"],
+    ["AI coach video consent", consentDate ? `Given on ${consentDate}` : "Not given yet"],
+  ];
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
-      {updated && NOTICES[updated] && <p role="status" className="rounded-lg bg-brand-50 p-3 font-medium text-brand-700">✓ {NOTICES[updated]}</p>}
-      <section className="card flex items-center gap-4">
-        <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-brand-100 text-2xl font-bold text-brand-700">
-          {profile.avatar_url ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={profile.avatar_url} alt="" className="h-full w-full object-cover" />
-          ) : (
-            profile.display_name.charAt(0).toUpperCase()
-          )}
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold">{profile.display_name}</h1>
-          <p className="text-slate-600">{sports} · {level} · {profile.city}</p>
-          <p className="text-sm text-slate-400">{user.email}</p>
-        </div>
-      </section>
-
+      {updated && NOTICES[updated] && (
+        <p role="status" className="rounded-lg bg-brand-50 p-3 font-medium text-brand-700">✓ {NOTICES[updated]}</p>
+      )}
       <section className="card">
-        <h2 className="mb-4 text-lg font-semibold">Edit profile</h2>
-        <ProfileForm profile={profile} submitLabel="Save changes" />
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-100 text-2xl font-bold text-brand-700">
+              {profile.avatar_url ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={profile.avatar_url} alt="" className="h-full w-full object-cover" />
+              ) : (
+                profile.display_name.charAt(0).toUpperCase()
+              )}
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold">{profile.display_name}</h1>
+              <p className="text-slate-600">{level?.label} · {profile.city}</p>
+            </div>
+          </div>
+          <Link href="/profile/edit" className="btn-primary">Edit profile</Link>
+        </div>
+
+        <dl className="mt-6 divide-y divide-slate-100 border-t border-slate-100">
+          {rows.map(([label, value]) => (
+            <div key={label} className="grid gap-1 py-3 sm:grid-cols-3">
+              <dt className="text-sm font-medium text-slate-500">{label}</dt>
+              <dd className="sm:col-span-2">{value}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <details className="card border-red-200" open={error === "confirm"}>
