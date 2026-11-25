@@ -1,21 +1,113 @@
 "use client";
 
 import { useActionState } from "react";
-import { SKILL_LEVELS, SPORTS } from "@sportsapp/shared";
+import { AVAILABILITY, HANDEDNESS, PLAY_FORMATS, PROFILE_VISIBILITY, SKILL_LEVELS, SPORTS } from "@sportsapp/shared";
 import { saveProfile } from "@/app/profile/actions";
 import type { Profile } from "@/lib/auth";
+import { AvatarUpload } from "./avatar-upload";
 
-export function ProfileForm({ profile, submitLabel }: { profile: Profile | null; submitLabel: string }) {
+function Section({ title, hint, children }: { title: string; hint?: string; children: React.ReactNode }) {
+  return (
+    <fieldset className="space-y-4 border-t border-slate-100 pt-5">
+      <legend className="sr-only">{title}</legend>
+      <div>
+        <h2 className="text-lg font-semibold">{title}</h2>
+        {hint && <p className="text-sm text-slate-500">{hint}</p>}
+      </div>
+      {children}
+    </fieldset>
+  );
+}
+
+export function ProfileForm({
+  profile,
+  userId,
+  submitLabel,
+  mode = "edit",
+}: {
+  profile: Profile | null;
+  userId: string;
+  submitLabel: string;
+  mode?: "onboarding" | "edit";
+}) {
   const [state, action, pending] = useActionState(saveProfile, {});
   const v = state.values;
+  const pick = <T,>(key: string, fallback: T): T => (v && key in v ? (v[key] as T) : fallback);
   const values = {
-    display_name: (v?.display_name as string) ?? profile?.display_name ?? "",
-    city: (v?.city as string) ?? profile?.city ?? "",
-    birth_year: (v?.birth_year as string) ?? (profile?.birth_year ? String(profile.birth_year) : ""),
-    skill_level: (v?.skill_level as string) || profile?.skill_level || "beginner",
-    sports: (v?.sports as string[]) ?? profile?.sports ?? ["badminton"],
+    display_name: pick("display_name", profile?.display_name ?? ""),
+    city: pick("city", profile?.city ?? "Boston, MA"),
+    birth_year: pick("birth_year", profile?.birth_year ? String(profile.birth_year) : ""),
+    skill_level: pick("skill_level", profile?.skill_level ?? "beginner") || "beginner",
+    sports: pick<string[]>("sports", profile?.sports ?? ["badminton"]),
     video_consent: v ? v.video_consent === "on" : Boolean(profile?.video_consent_at),
+    bio: pick("bio", profile?.bio ?? ""),
+    home_area: pick("home_area", profile?.home_area ?? ""),
+    handedness: pick("handedness", profile?.handedness ?? ""),
+    play_format: pick("play_format", profile?.play_format ?? "any"),
+    availability: pick<string[]>("availability", profile?.availability ?? []),
+    show_profile_to: pick("show_profile_to", profile?.show_profile_to ?? "members"),
+    avatar_url: pick("avatar_url", profile?.avatar_url ?? ""),
   };
+
+  const extras = (
+    <>
+      <Section title="Your game" hint="Helps us match you with sessions and partners, and lets the AI coach read your clips correctly.">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label htmlFor="handedness" className="label">Racket hand</label>
+            <select id="handedness" name="handedness" defaultValue={values.handedness} className="input">
+              <option value="">Not set</option>
+              {HANDEDNESS.map((h) => <option key={h.id} value={h.id}>{h.label}</option>)}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="play_format" className="label">Favourite format</label>
+            <select id="play_format" name="play_format" defaultValue={values.play_format} className="input">
+              {PLAY_FORMATS.map((f) => <option key={f.id} value={f.id}>{f.label}</option>)}
+            </select>
+          </div>
+        </div>
+        <div>
+          <span className="label">When can you usually play?</span>
+          <div className="grid gap-2 sm:grid-cols-3">
+            {AVAILABILITY.map((a) => (
+              <label key={a.id} className="flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50">
+                <input type="checkbox" name="availability" value={a.id} defaultChecked={values.availability.includes(a.id)} />
+                {a.label}
+              </label>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section title="About you" hint="Shown on your profile to other members.">
+        <AvatarUpload userId={userId} name={values.display_name} initial={values.avatar_url || null} />
+        <div>
+          <label htmlFor="home_area" className="label">Neighbourhood</label>
+          <input id="home_area" name="home_area" defaultValue={values.home_area} placeholder="e.g. Cambridge, Allston, Quincy" className="input" />
+        </div>
+        <div>
+          <label htmlFor="bio" className="label">Short bio</label>
+          <textarea id="bio" name="bio" rows={3} maxLength={500} defaultValue={values.bio} placeholder="How long you've played, what you're working on, who you'd like to play with…" className="input" />
+        </div>
+      </Section>
+
+      <Section title="Privacy">
+        <fieldset>
+          <legend className="label">Who can see your profile?</legend>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {PROFILE_VISIBILITY.map((o) => (
+              <label key={o.id} className="flex gap-3 rounded-lg border border-slate-300 bg-white p-3 has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50">
+                <input type="radio" name="show_profile_to" value={o.id} defaultChecked={values.show_profile_to === o.id} className="mt-1" />
+                <span><span className="block font-medium">{o.label}</span><span className="text-sm text-slate-600">{o.hint}</span></span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </Section>
+    </>
+  );
+
   return (
     <form key={JSON.stringify(v ?? null)} action={action} className="space-y-5">
       <div>
@@ -25,7 +117,7 @@ export function ProfileForm({ profile, submitLabel }: { profile: Profile | null;
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="city" className="label">City</label>
-          <input id="city" name="city" defaultValue={values.city} placeholder="e.g. Seattle" required className="input" />
+          <input id="city" name="city" defaultValue={values.city} placeholder="e.g. Boston, MA" required className="input" />
         </div>
         <div>
           <label htmlFor="birth_year" className="label">Birth year</label>
@@ -64,6 +156,16 @@ export function ProfileForm({ profile, submitLabel }: { profile: Profile | null;
           unless I choose to share them, and I can delete them at any time.
         </span>
       </label>
+
+      {mode === "onboarding" ? (
+        <details className="rounded-lg border border-slate-200 p-4">
+          <summary className="cursor-pointer font-medium text-brand-700">Add more about your game (optional, you can do this later)</summary>
+          <div className="mt-2 space-y-5">{extras}</div>
+        </details>
+      ) : (
+        extras
+      )}
+
       {state.error && <p role="alert" className="text-sm text-red-600">{state.error}</p>}
       <button className="btn-primary w-full sm:w-auto" disabled={pending}>{pending ? "Saving…" : submitLabel}</button>
     </form>

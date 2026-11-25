@@ -11,6 +11,8 @@ Follows "Sports Social App Investor MVP Plan" (Nov 24, 2026).
 
 Launch city: Boston, MA.
 
+Database setup: run every file in packages/db/migrations in number order in the Supabase SQL Editor.
+
 Out of scope (roadmap slides only): pro-match 3D analysis, team plans.
 Demo footage: the founder's own filmed coaches with signed release forms, never pro/broadcast footage.
 

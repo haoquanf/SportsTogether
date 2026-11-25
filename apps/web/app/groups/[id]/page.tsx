@@ -113,7 +113,7 @@ export default async function GroupPage({ params }: { params: Promise<{ id: stri
             {members.map((m) => (
               <li key={m.user_id} className="flex items-center gap-2">
                 <Avatar name={m.profiles?.display_name ?? "?"} url={m.profiles?.avatar_url} />
-                <span>{m.profiles?.display_name || "Member"}</span>
+                <Link href={`/members/${m.user_id}`} className="hover:text-brand-700">{m.profiles?.display_name || "Member"}</Link>
                 <span className="text-sm text-slate-500">· {skillLabel(m.profiles?.skill_level)}</span>
                 {m.role === "admin" && <Badge tone="blue">Admin</Badge>}
               </li>

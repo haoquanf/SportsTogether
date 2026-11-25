@@ -80,7 +80,7 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
               {going.map((r) => (
                 <li key={r.user_id} className="flex items-center gap-2">
                   <Avatar name={r.profiles?.display_name ?? "?"} url={r.profiles?.avatar_url} />
-                  {r.profiles?.display_name || "Member"} <span className="text-sm text-slate-500">· {skillLabel(r.profiles?.skill_level)}</span>
+                  <Link href={`/members/${r.user_id}`} className="hover:text-brand-700">{r.profiles?.display_name || "Member"}</Link> <span className="text-sm text-slate-500">· {skillLabel(r.profiles?.skill_level)}</span>
                 </li>
               ))}
             </ul>

@@ -26,3 +26,29 @@ export const BADMINTON_STROKES = [
 
 export const FREE_ANALYSES_PER_MONTH = 3;
 export const PREMIUM_ANALYSES_PER_MONTH = 30;
+
+export const HANDEDNESS = [
+  { id: "right", label: "Right-handed" },
+  { id: "left", label: "Left-handed" },
+] as const;
+
+export const PLAY_FORMATS = [
+  { id: "doubles", label: "Doubles" },
+  { id: "singles", label: "Singles" },
+  { id: "mixed", label: "Mixed doubles" },
+  { id: "any", label: "Any format" },
+] as const;
+
+export const AVAILABILITY = [
+  { id: "weekday_mornings", label: "Weekday mornings" },
+  { id: "weekday_lunch", label: "Weekday lunchtime" },
+  { id: "weekday_evenings", label: "Weekday evenings" },
+  { id: "weekend_mornings", label: "Weekend mornings" },
+  { id: "weekend_afternoons", label: "Weekend afternoons" },
+  { id: "weekend_evenings", label: "Weekend evenings" },
+] as const;
+
+export const PROFILE_VISIBILITY = [
+  { id: "members", label: "All signed-in members", hint: "Anyone on the app can see your profile" },
+  { id: "groups", label: "Only people in my groups", hint: "Others see you as “Member”" },
+] as const;

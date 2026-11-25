@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { addComment, deleteComment, reportComment } from "@/app/groups/actions";
 import type { CommentRow } from "@/lib/groups";
 import { LAUNCH_TZ } from "@/lib/time";
@@ -32,7 +33,7 @@ export function Comments({
             <Avatar name={c.profiles?.display_name ?? "?"} url={c.profiles?.avatar_url} />
             <div className="min-w-0 flex-1">
               <p className="text-sm">
-                <span className="font-medium">{c.profiles?.display_name ?? "Member"}</span>{" "}
+                <Link href={`/members/${c.user_id}`} className="font-medium hover:text-brand-700">{c.profiles?.display_name ?? "Member"}</Link>{" "}
                 <span className="text-slate-400">
                   {new Date(c.created_at).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short", timeZone: LAUNCH_TZ })}
                 </span>

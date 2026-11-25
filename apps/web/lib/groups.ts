@@ -142,3 +142,25 @@ export async function myUpcomingEvents(userId: string) {
     .map((r) => ({ ...r.events, status: r.status }))
     .sort((a, b) => a.starts_at.localeCompare(b.starts_at));
 }
+
+export async function groupsForUser(userId: string) {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("group_members")
+    .select("role, status, groups(id, name, area)")
+    .eq("user_id", userId)
+    .order("joined_at");
+  type Row = { role: string; status: string; groups: { id: string; name: string; area: string } | null };
+  return ((data ?? []) as unknown as Row[]).filter((r) => r.groups);
+}
+
+export async function sessionsPlayed(userId: string) {
+  const supabase = await createClient();
+  const { count } = await supabase
+    .from("rsvps")
+    .select("event_id, events!inner(ends_at)", { count: "exact", head: true })
+    .eq("user_id", userId)
+    .eq("status", "going")
+    .lt("events.ends_at", new Date().toISOString());
+  return count ?? 0;
+}
