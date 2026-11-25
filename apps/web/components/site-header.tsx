@@ -10,10 +10,11 @@ export async function SiteHeader() {
         <Link href="/" className="flex items-center gap-2 text-lg font-bold text-brand-700">
           <span aria-hidden>🏸</span> Rally
         </Link>
-        <nav className="flex items-center gap-3 text-sm">
+        <nav className="flex items-center gap-3 text-sm sm:gap-4">
           {current ? (
             <>
               <Link href="/home" className="font-medium hover:text-brand-700">Home</Link>
+              <Link href="/groups" className="font-medium hover:text-brand-700">Groups</Link>
               <Link href="/profile" className="font-medium hover:text-brand-700">
                 {current.profile?.display_name || "My profile"}
               </Link>
