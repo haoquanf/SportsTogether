@@ -9,6 +9,8 @@ Follows "Sports Social App Investor MVP Plan" (Nov 24, 2026).
 | 3. Community and lessons | Groups on a map, skill-tagged events with RSVP and waitlist, comments, report/block, reminders, tutorial library | F3 to F8, F15 |
 | 4. Payments and polish | Stripe Premium, free limit (3/month), admin panel, analytics, demo rehearsal; activity feed and challenges if time allows | F12 to F14 |
 
+Launch city: Boston, MA.
+
 Out of scope (roadmap slides only): pro-match 3D analysis, team plans.
 Demo footage: the founder's own filmed coaches with signed release forms, never pro/broadcast footage.
 

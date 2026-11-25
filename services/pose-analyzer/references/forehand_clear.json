@@ -1,0 +1,41 @@
+{
+  "stroke": "forehand_clear",
+  "source": "PLACEHOLDER: textbook values. Replace with the coach's own clips using build_reference.py.",
+  "metrics": {
+    "elbow_at_contact": {
+      "target": 165, "tolerance": 10, "span": 40, "weight": 3, "unit": "deg",
+      "low": "Straighten your arm at contact. Your elbow is about {diff}° more bent than the coach's, which costs you height and depth.",
+      "high": "Your arm locks fully straight at contact. Keep a slight bend so the forearm can rotate through the shot."
+    },
+    "shoulder_at_contact": {
+      "target": 160, "tolerance": 15, "span": 45, "weight": 3, "unit": "deg",
+      "low": "Reach higher. Your elbow is about {diff}° lower than the coach's at contact, so you hit the shuttle too flat.",
+      "high": "You are reaching slightly behind your head. Meet the shuttle a little more in front."
+    },
+    "elbow_at_prep": {
+      "target": 80, "tolerance": 20, "span": 50, "weight": 2, "unit": "deg",
+      "low": "Your racket arm folds very tightly when you prepare. Relax the elbow slightly so the swing stays smooth.",
+      "high": "Load the racket more. Bend your elbow and bring the racket behind your head before swinging; you are {diff}° straighter than the coach."
+    },
+    "trunk_lean_at_contact": {
+      "target": 5, "tolerance": 10, "span": 25, "weight": 1, "unit": "deg",
+      "low": "You are leaning forward at contact. Stay tall and let your body rotate instead.",
+      "high": "You are leaning back about {diff}° more than the coach. Get behind the shuttle earlier with your footwork."
+    },
+    "knee_bend_at_prep": {
+      "target": 150, "tolerance": 15, "span": 30, "weight": 1, "unit": "deg",
+      "low": "You are crouching deeply while preparing. A slight knee bend is enough.",
+      "high": "Bend your back knee a little as you prepare so you can push up into the shot."
+    },
+    "contact_height": {
+      "target": 0.9, "tolerance": 0.25, "span": 0.8, "weight": 2, "unit": "body",
+      "low": "Hit the shuttle at the highest point you can reach. Your contact point is lower than the coach's.",
+      "high": "Good height. You can afford to let the shuttle drop a fraction so you can hit through it."
+    },
+    "prep_to_contact_s": {
+      "target": 0.25, "tolerance": 0.1, "span": 0.3, "weight": 1, "unit": "s",
+      "low": "Your swing is very short. Start the swing from a fuller loaded position.",
+      "high": "Your swing is slow, about {diff} s longer than the coach's. Prepare early, then swing in one quick motion."
+    }
+  }
+}

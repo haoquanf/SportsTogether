@@ -12,3 +12,4 @@ __pycache__/
 *.mp4
 *.mov
 !services/pose-analyzer/references/**/*.json
+services/pose-analyzer/models/
