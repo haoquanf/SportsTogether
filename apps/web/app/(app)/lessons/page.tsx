@@ -38,6 +38,14 @@ export default function LessonsPage() {
 
       <section>
         <h2 className="mb-3 flex items-center gap-2 text-xl font-semibold"><span aria-hidden>🏸</span> Badminton</h2>
+        <Link href="/lessons/badminton-grips" className="card mb-4 grid items-center gap-4 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-md md:grid-cols-[1fr_auto]">
+          <div>
+            <div className="flex flex-wrap gap-2"><Badge tone="green">Demo lesson</Badge><Badge>All levels</Badge><Badge>10 min</Badge><Badge tone="blue">Interactive 3D</Badge></div>
+            <h3 className="mt-3 text-lg font-semibold">Grip and fingers: the hidden power in badminton</h3>
+            <p className="mt-1 text-sm text-slate-600">Forehand and backhand grips, finger power on the smash and net-shot finesse, with a 3D hand you can turn around.</p>
+          </div>
+          <p className="text-sm font-medium text-brand-700">Start lesson →</p>
+        </Link>
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {BADMINTON_COMING.map((l) => (
             <li key={l.title} className="card opacity-75">
