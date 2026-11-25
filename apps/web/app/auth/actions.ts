@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
 
-export type FormState = { error?: string; message?: string };
+export type FormState = { error?: string; message?: string; values?: Record<string, string | string[]> };
 
 const NOT_CONFIGURED: FormState = { error: "Sign-in isn't switched on yet in this preview." };
 

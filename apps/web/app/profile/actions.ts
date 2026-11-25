@@ -9,7 +9,25 @@ import type { FormState } from "@/app/auth/actions";
 
 const MIN_AGE = 13;
 
-export async function saveProfile(_: FormState, formData: FormData): Promise<FormState> {
+export async function saveProfile(prev: FormState, formData: FormData): Promise<FormState> {
+  const state = await saveProfileInner(formData);
+  // Send the typed values back so the form keeps them when there is an error.
+  return state.error
+    ? {
+        ...state,
+        values: {
+          display_name: String(formData.get("display_name") ?? ""),
+          city: String(formData.get("city") ?? ""),
+          birth_year: String(formData.get("birth_year") ?? ""),
+          skill_level: String(formData.get("skill_level") ?? ""),
+          video_consent: formData.get("video_consent") === "on" ? "on" : "",
+          sports: formData.getAll("sports").map(String),
+        },
+      }
+    : state;
+}
+
+async function saveProfileInner(formData: FormData): Promise<FormState> {
   const { user, profile } = await requireUser();
   const displayName = String(formData.get("display_name") ?? "").trim();
   const city = String(formData.get("city") ?? "").trim();
@@ -31,7 +49,8 @@ export async function saveProfile(_: FormState, formData: FormData): Promise<For
   const supabase = await createClient();
   const { error } = await supabase
     .from("profiles")
-    .update({
+    .upsert({
+      id: user.id,
       display_name: displayName,
       city,
       skill_level: skill,
@@ -39,9 +58,11 @@ export async function saveProfile(_: FormState, formData: FormData): Promise<For
       birth_year: birthYear,
       video_consent_at: consent ? (profile?.video_consent_at ?? new Date().toISOString()) : null,
       onboarded: true,
-    })
-    .eq("id", user.id);
-  if (error) return { error: "We couldn't save your profile. Please try again." };
+    });
+  if (error) {
+    console.error("saveProfile failed", error);
+    return { error: `We couldn't save your profile (${error.code ?? "unknown"}: ${error.message}). Please try again.` };
+  }
 
   revalidatePath("/", "layout");
   redirect("/profile?updated=profile");
