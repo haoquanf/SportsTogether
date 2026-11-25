@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+.env
+.env.local
+.env*.local
+*.log
+.DS_Store
+.vercel
+__pycache__/
+.venv/
+*.mp4
+*.mov
+!services/pose-analyzer/references/**/*.json
