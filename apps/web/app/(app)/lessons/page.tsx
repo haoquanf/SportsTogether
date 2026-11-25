@@ -38,6 +38,14 @@ export default function LessonsPage() {
 
       <section>
         <h2 className="mb-3 flex items-center gap-2 text-xl font-semibold"><span aria-hidden>🏸</span> Badminton</h2>
+        <Link href="/lessons/badminton-movement" className="card mb-4 grid items-center gap-4 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-md md:grid-cols-[1fr_auto]">
+          <div>
+            <div className="flex flex-wrap gap-2"><Badge tone="green">Demo lesson</Badge><Badge>All levels</Badge><Badge>15 min</Badge><Badge tone="blue">Interactive 3D</Badge></div>
+            <h3 className="mt-3 text-lg font-semibold">Footwork and full-body technique</h3>
+            <p className="mt-1 text-sm text-slate-600">Ready stance, split step, lunge, back-court footwork, clear, jump smash and net shot, in slow-motion 3D with cues for legs, trunk and both arms.</p>
+          </div>
+          <p className="text-sm font-medium text-brand-700">Start lesson →</p>
+        </Link>
         <Link href="/lessons/badminton-grips" className="card mb-4 grid items-center gap-4 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-md md:grid-cols-[1fr_auto]">
           <div>
             <div className="flex flex-wrap gap-2"><Badge tone="green">Demo lesson</Badge><Badge>All levels</Badge><Badge>10 min</Badge><Badge tone="blue">Interactive 3D</Badge></div>

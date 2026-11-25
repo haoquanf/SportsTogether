@@ -168,10 +168,10 @@ export const LESSONS: Lesson[] = [
 ];
 
 export const BADMINTON_COMING = [
-  { title: "The forehand clear", level: "Beginner" },
-  { title: "The overhead smash", level: "Improver" },
-  { title: "Footwork to the back court", level: "Beginner" },
   { title: "The low serve in doubles", level: "Beginner" },
+  { title: "Drop shot and slice", level: "Improver" },
+  { title: "Backhand clear", level: "Improver" },
+  { title: "Doubles attack and defence rotation", level: "Improver" },
 ];
 
 export const getLesson = (slug: string) => LESSONS.find((l) => l.slug === slug) ?? null;

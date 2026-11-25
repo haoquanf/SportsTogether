@@ -161,6 +161,14 @@ export default function GripLessonPage() {
         </ul>
       </section>
 
+      <Link href="/lessons/badminton-movement" className="card flex flex-wrap items-center justify-between gap-3 transition hover:border-brand-500">
+        <div>
+          <p className="text-sm text-slate-500">Next lesson</p>
+          <p className="text-lg font-semibold">Footwork and full-body technique: legs, trunk and both arms in 3D</p>
+        </div>
+        <span className="text-sm font-medium text-brand-700">Start →</span>
+      </Link>
+
       <section className="relative overflow-hidden rounded-3xl bg-[#06110c] px-8 py-10 text-white">
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(59,130,246,0.25),transparent_60%)]" />
         <div className="relative max-w-2xl">
