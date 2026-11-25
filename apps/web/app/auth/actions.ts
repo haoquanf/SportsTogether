@@ -41,7 +41,10 @@ export async function logIn(_: FormState, formData: FormData): Promise<FormState
     email: String(formData.get("email") ?? "").trim(),
     password: String(formData.get("password") ?? ""),
   });
-  if (error) return { error: "That email and password don't match." };
+  if (error) {
+    if (error.code === "email_not_confirmed") return { error: "Please confirm your email first. Check your inbox for the link." };
+    return { error: "That email and password don't match." };
+  }
   redirect("/profile");
 }
 
