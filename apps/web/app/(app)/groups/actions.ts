@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { SKILL_LEVELS } from "@sportsapp/shared";
+import { SKILL_LEVELS, SPORTS } from "@sportsapp/shared";
 import { requireUser } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { LAUNCH_TZ, zonedInputToDate } from "@/lib/time";
@@ -36,6 +36,7 @@ export async function createGroup(_: FormState, f: FormData): Promise<FormState>
     .insert({
       name,
       description: str(f, "description"),
+      sport: SPORTS.some((s) => s.id === str(f, "sport") && s.launched) ? str(f, "sport") : "badminton",
       area: str(f, "area"),
       city: profile?.city || "Boston, MA",
       lat: loc.lat,

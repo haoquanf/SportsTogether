@@ -11,7 +11,7 @@ import { CoachScreen, PhoneFrame } from "@/components/landing/screens";
 const ACTIONS = [
   { href: "/groups", icon: "📍", title: "Find a game", text: "Groups and sessions near you", live: true },
   { href: null, icon: "🎥", title: "Analyse a clip", text: "AI feedback on your stroke", live: false },
-  { href: null, icon: "📚", title: "Lessons", text: "Short coach-led videos", live: false },
+  { href: "/lessons", icon: "📚", title: "Lessons", text: "Try the ballroom Waltz demo", live: true },
   { href: "/profile", icon: "👤", title: "My profile", text: "Your game, groups and data", live: true },
 ];
 

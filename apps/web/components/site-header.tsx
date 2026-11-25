@@ -15,7 +15,8 @@ export async function SiteHeader() {
             <>
               <Link href="/home" className="font-medium hover:text-brand-700">Home</Link>
               <Link href="/groups" className="font-medium hover:text-brand-700">Groups</Link>
-              <Link href="/profile" className="font-medium hover:text-brand-700">
+              <Link href="/lessons" className="font-medium hover:text-brand-700">Lessons</Link>
+              <Link href="/profile" className="hidden font-medium hover:text-brand-700 sm:inline">
                 {current.profile?.display_name || "My profile"}
               </Link>
               <form action={signOut}>
@@ -24,6 +25,7 @@ export async function SiteHeader() {
             </>
           ) : (
             <>
+              <Link href="/lessons" className="font-medium hover:text-brand-700">Lessons</Link>
               <Link href="/login" className="font-medium hover:text-brand-700">Log in</Link>
               <Link href="/signup" className="btn-primary py-1.5">Sign up</Link>
             </>

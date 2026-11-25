@@ -24,14 +24,14 @@ const TABS = [
   },
   {
     id: "groups", label: "Find games", title: "Never play alone again",
-    text: "Find badminton groups near you on a map, filter by level, and RSVP to sessions. If a session is full, join the waitlist and move up automatically when a spot opens.",
+    text: "Find badminton and ballroom groups near you on a map, filter by sport and level, and RSVP to sessions. If a session is full, join the waitlist and move up automatically when a spot opens.",
     points: ["Sessions tagged by skill level", "Automatic waitlist", "Calendar reminders"],
     Screen: GroupsScreen,
   },
   {
     id: "lessons", label: "Lessons", title: "Short lessons that stick",
-    text: "Bite-sized video lessons from local coaches, with the key positions drawn right on the video and simple steps to practise.",
-    points: ["2 to 4 minutes each", "On-screen annotations", "Beginner to advanced"],
+    text: "Bite-sized lessons from local coaches, with the key positions drawn on screen. Ballroom lessons show animated footwork for both leader and follower, count by count.",
+    points: ["Badminton and ballroom dance", "Animated step diagrams", "Beginner to advanced"],
     Screen: LessonScreen,
   },
 ];

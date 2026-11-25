@@ -10,8 +10,8 @@ export default async function GroupsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-bold">Badminton groups</h1>
-          <p className="text-slate-600">Find people to play with near you.</p>
+          <h1 className="text-3xl font-bold">Groups</h1>
+          <p className="text-slate-600">Find people near you to play and dance with.</p>
         </div>
         <Link href="/groups/new" className="btn-primary">Start a group</Link>
       </div>

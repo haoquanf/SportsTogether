@@ -6,8 +6,8 @@ import "./globals.css";
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Rally: play more badminton, play better",
-  description: "Find local badminton games and get AI feedback on your technique.",
+  title: "Rally: play more, play better",
+  description: "AI coaching, lessons and local groups for badminton, ballroom dance and more.",
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1 };

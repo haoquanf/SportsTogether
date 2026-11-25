@@ -16,7 +16,8 @@ const FAQ = [
   ["How accurate is the AI coach?", "It tracks 33 body points in every frame and compares your joint angles and timing with a coach doing the same stroke. Every tip comes from those measurements, not guesswork, and if your clip is hard to read, the app tells you instead of guessing."],
   ["Is it only for good players?", "Not at all. Groups, sessions and lessons are tagged from beginner to advanced, and tips are written in plain language, not jargon."],
   ["Who can see my videos?", "Only you. Clips are private by default, used only to analyse your technique, and you can delete them, or your whole account, at any time."],
-  ["Which strokes does it analyse?", "We're starting with the forehand clear and the smash, and adding the drop shot, backhand clear and serve next."],
+  ["Which sports can I use it for?", "Badminton and ballroom dance today, with basketball next. Groups and lessons work for every sport; the AI coach starts with badminton and adds ballroom next."],
+  ["Which strokes does the AI coach analyse?", "In badminton we're starting with the forehand clear and the smash, and adding the drop shot, backhand clear and serve next."],
   ["Is it only in Boston?", "Groups and sessions launch in the Boston area first. The AI coach and lessons work anywhere."],
 ];
 
@@ -26,9 +27,10 @@ function Nav({ signedIn }: { signedIn: boolean }) {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
         <Link href="/" className="flex items-center gap-2 text-xl font-bold text-white"><span aria-hidden>🏸</span> Rally</Link>
         <nav className="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
+          <a href="#sports" className="hover:text-white">Sports</a>
           <a href="#features" className="hover:text-white">Features</a>
           <a href="#how" className="hover:text-white">How it works</a>
-          <a href="#community" className="hover:text-white">Community</a>
+          <Link href="/lessons" className="hover:text-white">Lessons</Link>
           <a href="#pricing" className="hover:text-white">Pricing</a>
           <a href="#faq" className="hover:text-white">FAQ</a>
         </nav>
@@ -78,10 +80,10 @@ export default async function Landing() {
               <span className="h-2 w-2 rounded-full bg-brand-400" /> Now in early access in Boston
             </p>
             <h1 className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-              Your badminton coach <span className="bg-gradient-to-r from-brand-400 to-emerald-200 bg-clip-text text-transparent">and crew</span>, in one app.
+              Your coach <span className="bg-gradient-to-r from-brand-400 to-emerald-200 bg-clip-text text-transparent">and crew</span> for the sports you love.
             </h1>
             <p className="mt-6 max-w-xl text-lg text-slate-300">
-              Film a stroke on your phone and get AI feedback next to a real coach in under a minute. Then find people near you to play with tonight.
+              Film a badminton stroke and get AI feedback next to a real coach in under a minute. Learn the Waltz step by step. Then find people near you to play or dance with tonight.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href={signedIn ? "/home" : "/signup"} className="btn bg-brand-500 px-6 py-3 text-base text-white hover:bg-brand-600">
@@ -105,6 +107,45 @@ export default async function Landing() {
             <div className="absolute -right-2 bottom-20 hidden rounded-2xl border border-white/10 bg-slate-900/90 p-3 text-sm shadow-xl backdrop-blur sm:block lg:-right-6">
               <p className="text-xs text-slate-400">Thursday doubles · Cambridge</p>
               <p className="font-semibold text-brand-400">✓ You&apos;re going</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sports */}
+      <section id="sports" className="scroll-mt-10 mx-auto max-w-6xl px-5 pt-24">
+        <SectionHeading eyebrow="One app, many sports" title="Pick your game" text="Start with badminton and ballroom dance in Boston. More sports are on the way." />
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <Link href={signedIn ? "/groups" : "/signup"} className="group relative overflow-hidden rounded-3xl bg-[#06110c] p-7 text-white transition hover:-translate-y-1">
+            <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(34,197,94,0.35),transparent_60%)]" />
+            <div className="relative">
+              <p className="text-4xl" aria-hidden>🏸</p>
+              <h3 className="mt-4 text-2xl font-bold">Badminton</h3>
+              <p className="mt-2 text-slate-300">AI coach for your clear and smash, coach-led lessons, and local groups at every level.</p>
+              <div className="mt-5 flex flex-wrap gap-2 text-xs">
+                {["AI coach", "Lessons", "Groups"].map((t) => <span key={t} className="rounded-full bg-white/10 px-2.5 py-1">{t}</span>)}
+              </div>
+              <p className="mt-6 font-medium text-brand-400 group-hover:underline">Find a game →</p>
+            </div>
+          </Link>
+          <Link href="/lessons/ballroom-waltz-bronze-basics" className="group relative overflow-hidden rounded-3xl bg-[#14060f] p-7 text-white transition hover:-translate-y-1">
+            <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(244,114,182,0.35),transparent_60%)]" />
+            <div className="relative">
+              <p className="text-4xl" aria-hidden>💃</p>
+              <h3 className="mt-4 text-2xl font-bold">Ballroom dance</h3>
+              <p className="mt-2 text-slate-300">Step-by-step lessons with animated footwork for leaders and followers, plus local practice groups.</p>
+              <div className="mt-5 flex flex-wrap gap-2 text-xs">
+                {["Lessons", "Groups", "AI coach soon"].map((t) => <span key={t} className="rounded-full bg-white/10 px-2.5 py-1">{t}</span>)}
+              </div>
+              <p className="mt-6 font-medium text-pink-300 group-hover:underline">Try the free Waltz lesson →</p>
+            </div>
+          </Link>
+          <div className="relative overflow-hidden rounded-3xl border border-dashed border-slate-300 bg-white p-7">
+            <p className="text-4xl" aria-hidden>🏀</p>
+            <h3 className="mt-4 text-2xl font-bold">More coming</h3>
+            <p className="mt-2 text-slate-600">Basketball is next, followed by more racket sports and dance styles.</p>
+            <div className="mt-5 flex flex-wrap gap-2 text-xs text-slate-600">
+              {["Basketball", "Tennis", "Latin dance"].map((t) => <span key={t} className="rounded-full bg-slate-100 px-2.5 py-1">{t}</span>)}
             </div>
           </div>
         </div>
@@ -137,7 +178,7 @@ export default async function Landing() {
       {/* Features */}
       <section id="features" className="scroll-mt-10 bg-white py-24">
         <div className="mx-auto max-w-6xl px-5">
-          <SectionHeading eyebrow="Features" title="The smarter way to get better at badminton" />
+          <SectionHeading eyebrow="Features" title="The smarter way to get better at your sport" />
           <div className="mt-12"><FeatureTabs /></div>
         </div>
       </section>
@@ -167,9 +208,9 @@ export default async function Landing() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-2">
           <div>
             <p className="text-sm font-semibold uppercase tracking-widest text-brand-600">Community</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-5xl">Badminton is better together.</h2>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-5xl">Everything is better together.</h2>
             <p className="mt-5 text-lg text-slate-600">
-              Join local groups, see who&apos;s playing this week, and RSVP in one tap. Every session is tagged by level, so you always get good games.
+              Join local badminton and ballroom groups, see who&apos;s going this week, and RSVP in one tap. Every session is tagged by level, so you always get a good match.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-4">
               {[["📍", "Groups on a map", "Filter by distance and level"], ["🎯", "Level-matched sessions", "Beginner to advanced"], ["⏳", "Smart waitlist", "Move up when a spot opens"], ["💬", "Group chat", "Comments on every session"]].map(([i, t, d]) => (
@@ -254,7 +295,7 @@ export default async function Landing() {
         <div className="mx-auto flex max-w-6xl flex-wrap items-start justify-between gap-8 px-5">
           <div>
             <p className="flex items-center gap-2 text-lg font-bold text-white"><span aria-hidden>🏸</span> Rally</p>
-            <p className="mt-2 max-w-xs">AI coaching and local games for badminton players. Made in Boston.</p>
+            <p className="mt-2 max-w-xs">AI coaching, lessons and local groups for badminton, ballroom dance and more. Made in Boston.</p>
           </div>
           <div className="grid grid-cols-2 gap-x-12 gap-y-2">
             <a href="#features" className="hover:text-white">Features</a>
@@ -262,6 +303,7 @@ export default async function Landing() {
             <a href="#how" className="hover:text-white">How it works</a>
             <a href="#faq" className="hover:text-white">FAQ</a>
             <Link href="/groups" className="hover:text-white">Find a group</Link>
+            <Link href="/lessons" className="hover:text-white">Lessons</Link>
             <Link href="/signup" className="hover:text-white">Sign up</Link>
           </div>
         </div>

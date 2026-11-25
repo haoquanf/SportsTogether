@@ -1,8 +1,9 @@
 // Shared constants used by the web app and (mirrored) by the pose analyzer.
 
 export const SPORTS = [
-  { id: "badminton", label: "Badminton", launched: true },
-  { id: "basketball", label: "Basketball", launched: false },
+  { id: "badminton", label: "Badminton", launched: true, icon: "🏸" },
+  { id: "ballroom", label: "Ballroom dance", launched: true, icon: "💃" },
+  { id: "basketball", label: "Basketball", launched: false, icon: "🏀" },
 ] as const;
 
 export type SportId = (typeof SPORTS)[number]["id"];

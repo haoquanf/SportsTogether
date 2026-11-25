@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SPORTS } from "@sportsapp/shared";
 import { notFound } from "next/navigation";
 import { requireUser } from "@/lib/auth";
 import { getGroup, listComments } from "@/lib/groups";
@@ -30,7 +31,7 @@ export default async function GroupPage({ params }: { params: Promise<{ id: stri
             <h1 className="text-3xl font-bold">{group.name}</h1>
             <p className="text-slate-600">{group.area ? `${group.area}, ` : ""}{group.city}</p>
             <div className="mt-2 flex flex-wrap gap-2">
-              <Badge tone="green">Badminton</Badge>
+              <Badge tone="green">{SPORTS.find((s) => s.id === group.sport)?.icon} {SPORTS.find((s) => s.id === group.sport)?.label ?? group.sport}</Badge>
               <Badge>{skillLabel(group.skill_level)}</Badge>
               <Badge>{members.length} member{members.length === 1 ? "" : "s"}</Badge>
               {group.visibility === "approval" && <Badge tone="amber">Approval needed to join</Badge>}

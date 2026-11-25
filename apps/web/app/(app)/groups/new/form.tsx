@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { SKILL_LEVELS } from "@sportsapp/shared";
+import { SKILL_LEVELS, SPORTS } from "@sportsapp/shared";
 import { createGroup } from "@/app/(app)/groups/actions";
 import { LocationPicker } from "@/components/location-picker";
 
@@ -11,7 +11,13 @@ export function NewGroupForm() {
     <form action={action} className="space-y-5">
       <div>
         <label htmlFor="name" className="label">Group name</label>
-        <input id="name" name="name" required minLength={3} maxLength={80} placeholder="e.g. Tuesday Night Doubles" className="input" />
+        <input id="name" name="name" required minLength={3} maxLength={80} placeholder="e.g. Tuesday Night Doubles or Sunday Social Ballroom" className="input" />
+      </div>
+      <div>
+        <label htmlFor="sport" className="label">Sport</label>
+        <select id="sport" name="sport" defaultValue="badminton" className="input">
+          {SPORTS.filter((s) => s.launched).map((s) => <option key={s.id} value={s.id}>{s.icon} {s.label}</option>)}
+        </select>
       </div>
       <div>
         <label htmlFor="description" className="label">What is the group about?</label>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { SKILL_LEVELS } from "@sportsapp/shared";
+import { SKILL_LEVELS, SPORTS } from "@sportsapp/shared";
 import { Map } from "@/components/map";
 import { Badge } from "@/components/avatar";
 import { distanceKm, formatKm, type LatLng } from "@/lib/geo";
@@ -10,7 +10,7 @@ import { LAUNCH_CITY, LAUNCH_TZ } from "@/lib/time";
 import { skillLabel } from "@/lib/skill";
 
 type G = {
-  id: string; name: string; description: string; area: string; lat: number; lng: number;
+  id: string; name: string; description: string; sport: string; area: string; lat: number; lng: number;
   visibility: string; skill_level: string | null; memberCount: number; nextEvent: string | null;
 };
 
@@ -26,6 +26,7 @@ export function GroupFinder({ groups, mySkill }: { groups: G[]; mySkill: string 
   const [usingGps, setUsingGps] = useState(false);
   const [radius, setRadius] = useState(16);
   const [skill, setSkill] = useState<string>("");
+  const [sport, setSport] = useState<string>("");
   const [locError, setLocError] = useState("");
 
   const shown = useMemo(
@@ -33,9 +34,10 @@ export function GroupFinder({ groups, mySkill }: { groups: G[]; mySkill: string 
       groups
         .map((g) => ({ ...g, km: distanceKm(origin, g) }))
         .filter((g) => !radius || g.km <= radius)
+        .filter((g) => !sport || g.sport === sport)
         .filter((g) => !skill || !g.skill_level || g.skill_level === skill)
         .sort((a, b) => a.km - b.km),
-    [groups, origin, radius, skill],
+    [groups, origin, radius, skill, sport],
   );
 
   function nearMe() {
@@ -54,6 +56,11 @@ export function GroupFinder({ groups, mySkill }: { groups: G[]; mySkill: string 
         <label className="sr-only" htmlFor="radius">Distance</label>
         <select id="radius" value={radius} onChange={(e) => setRadius(Number(e.target.value))} className="input w-auto py-1.5">
           {RADII.map((r) => <option key={r.km} value={r.km}>{r.label}</option>)}
+        </select>
+        <label className="sr-only" htmlFor="sport">Sport</label>
+        <select id="sport" value={sport} onChange={(e) => setSport(e.target.value)} className="input w-auto py-1.5">
+          <option value="">All sports</option>
+          {SPORTS.filter((s) => s.launched).map((s) => <option key={s.id} value={s.id}>{s.icon} {s.label}</option>)}
         </select>
         <label className="sr-only" htmlFor="skill">Level</label>
         <select id="skill" value={skill} onChange={(e) => setSkill(e.target.value)} className="input w-auto py-1.5">
@@ -88,6 +95,7 @@ export function GroupFinder({ groups, mySkill }: { groups: G[]; mySkill: string 
                 <p className="text-sm text-slate-500">{g.area}</p>
                 <p className="mt-2 line-clamp-2 text-slate-700">{g.description}</p>
                 <div className="mt-3 flex flex-wrap gap-2">
+                  <Badge tone="blue">{SPORTS.find((s) => s.id === g.sport)?.icon} {SPORTS.find((s) => s.id === g.sport)?.label ?? g.sport}</Badge>
                   <Badge tone={g.skill_level && g.skill_level === mySkill ? "green" : "slate"}>{skillLabel(g.skill_level)}</Badge>
                   <Badge>{g.memberCount} member{g.memberCount === 1 ? "" : "s"}</Badge>
                   {g.visibility === "approval" && <Badge tone="amber">Approval needed</Badge>}
