@@ -10,7 +10,7 @@ import { CoachScreen, PhoneFrame } from "@/components/landing/screens";
 
 const ACTIONS = [
   { href: "/groups", icon: "📍", title: "Find a game", text: "Groups and sessions near you", live: true },
-  { href: null, icon: "🎥", title: "Analyse a clip", text: "AI feedback on your stroke", live: false },
+  { href: "/coach", icon: "🎥", title: "Analyse a clip", text: "AI feedback on your smash", live: true },
   { href: "/lessons", icon: "📚", title: "Lessons", text: "Try the ballroom Waltz demo", live: true },
   { href: "/profile", icon: "👤", title: "My profile", text: "Your game, groups and data", live: true },
 ];

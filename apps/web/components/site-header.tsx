@@ -16,6 +16,7 @@ export async function SiteHeader() {
               <Link href="/home" className="font-medium hover:text-brand-700">Home</Link>
               <Link href="/groups" className="font-medium hover:text-brand-700">Groups</Link>
               <Link href="/lessons" className="font-medium hover:text-brand-700">Lessons</Link>
+              <Link href="/coach" className="font-medium hover:text-brand-700">AI coach</Link>
               <Link href="/profile" className="hidden font-medium hover:text-brand-700 sm:inline">
                 {current.profile?.display_name || "My profile"}
               </Link>
@@ -25,7 +26,8 @@ export async function SiteHeader() {
             </>
           ) : (
             <>
-              <Link href="/lessons" className="font-medium hover:text-brand-700">Lessons</Link>
+              <Link href="/lessons" className="hidden font-medium hover:text-brand-700 sm:inline">Lessons</Link>
+              <Link href="/coach" className="font-medium hover:text-brand-700">AI coach</Link>
               <Link href="/login" className="font-medium hover:text-brand-700">Log in</Link>
               <Link href="/signup" data-track="Header: Sign up" className="btn-primary py-1.5">Sign up</Link>
             </>

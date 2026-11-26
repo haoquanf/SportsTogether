@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/copy-mediapipe.mjs && next dev",
+    "build": "node scripts/copy-mediapipe.mjs && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "tsx --test lib/**/*.test.ts"
   },
   "dependencies": {
+    "@mediapipe/tasks-vision": "1.2.3",
     "@sportsapp/shared": "workspace:*",
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.119.2",
@@ -31,6 +33,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
     "tailwindcss": "4.3.3",
+    "tsx": "4.23.15",
     "typescript": "^5"
   },
   "packageManager": "pnpm@10.28.0"

@@ -89,7 +89,7 @@ export default async function Landing() {
               <Link href={signedIn ? "/home" : "/signup"} data-track={signedIn ? "Hero: Open the app" : "Hero: Get started free"} className="btn bg-brand-500 px-6 py-3 text-base text-white hover:bg-brand-600">
                 {signedIn ? "Open the app" : "Get started free"}
               </Link>
-              <a href="#how" className="btn border border-white/25 px-6 py-3 text-base text-white hover:bg-white/10">How it works</a>
+              <Link href="/coach" data-track="Hero: Try the AI coach" className="btn border border-white/25 px-6 py-3 text-base text-white hover:bg-white/10">Try the AI coach</Link>
             </div>
             <dl className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-white/10 pt-6">
               {[["33", "body points tracked"], ["< 60 s", "per analysis"], ["$0", "to get started"]].map(([n, l]) => (
