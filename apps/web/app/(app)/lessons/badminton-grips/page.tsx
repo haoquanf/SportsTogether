@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Badge } from "@/components/avatar";
 import { GripStudio, type GripTab } from "@/components/lessons/grip-studio";
 
-export const metadata = { title: "Grip and finger technique · Badminton lesson · Rally" };
+export const metadata = { title: "Grip and finger technique · Badminton lesson · ZeniSports" };
 
 const TABS: GripTab[] = [
   {
@@ -181,7 +181,7 @@ export default function GripLessonPage() {
       </section>
 
       <p className="text-xs text-slate-500">
-        Demo lesson based on standard badminton coaching practice. 3D hand and racket are original models built for Rally. Grips shown for a right-handed player; left-handers mirror everything.
+        Demo lesson based on standard badminton coaching practice. 3D hand and racket are original models built for ZeniSports. Grips shown for a right-handed player; left-handers mirror everything.
       </p>
     </article>
   );

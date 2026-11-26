@@ -8,7 +8,7 @@ export async function SiteHeader() {
     <header className="sticky top-0 z-[1000] border-b border-slate-200 bg-white/85 backdrop-blur">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         <Link href={current ? "/home" : "/"} className="flex items-center gap-2 text-lg font-bold text-ink">
-          <span aria-hidden>🏸</span> Rally
+          <span aria-hidden>🏸</span> ZeniSports
         </Link>
         <nav className="flex items-center gap-3 text-sm sm:gap-4">
           {current ? (

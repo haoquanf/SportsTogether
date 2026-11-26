@@ -15,8 +15,8 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   const { event, group } = data;
   const url = new URL(`/events/${id}`, request.url).toString();
   const ics = [
-    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Rally//Badminton//EN", "BEGIN:VEVENT",
-    `UID:${event.id}@rally`, `DTSTAMP:${stamp(new Date().toISOString())}`,
+    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//ZeniSports//Sports//EN", "BEGIN:VEVENT",
+    `UID:${event.id}@zenisports`, `DTSTAMP:${stamp(new Date().toISOString())}`,
     `DTSTART:${stamp(event.starts_at)}`, `DTEND:${stamp(event.ends_at)}`,
     `SUMMARY:${esc(`${event.title} (${group.name})`)}`,
     `LOCATION:${esc([event.venue_name, event.venue_address].filter(Boolean).join(", "))}`,
@@ -25,6 +25,6 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     "END:VEVENT", "END:VCALENDAR",
   ].join("\r\n");
   return new NextResponse(ics, {
-    headers: { "Content-Type": "text/calendar; charset=utf-8", "Content-Disposition": `attachment; filename="rally-session.ics"` },
+    headers: { "Content-Type": "text/calendar; charset=utf-8", "Content-Disposition": `attachment; filename="zenisports-session.ics"` },
   });
 }

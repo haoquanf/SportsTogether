@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Badge } from "@/components/avatar";
 import { BodyStudio } from "@/components/lessons/body-studio";
 
-export const metadata = { title: "Footwork and full-body technique · Badminton lesson · Rally" };
+export const metadata = { title: "Footwork and full-body technique · Badminton lesson · ZeniSports" };
 
 const CHAIN = [
   ["🦵", "Legs", "Every shot starts from the floor. Bent knees and a push from the right foot give you speed and power."],
@@ -100,7 +100,7 @@ export default function MovementLessonPage() {
       </section>
 
       <p className="text-xs text-slate-500">
-        Demo lesson based on standard badminton coaching practice. The 3D player is an original model built for Rally and is simplified; real movement varies with the shot and the player. Shown for a right-handed player; left-handers mirror everything.
+        Demo lesson based on standard badminton coaching practice. The 3D player is an original model built for ZeniSports and is simplified; real movement varies with the shot and the player. Shown for a right-handed player; left-handers mirror everything.
       </p>
     </article>
   );

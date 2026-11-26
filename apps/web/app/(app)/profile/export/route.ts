@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
   return new NextResponse(JSON.stringify(body, null, 2), {
     headers: {
       "Content-Type": "application/json",
-      "Content-Disposition": `attachment; filename="rally-my-data.json"`,
+      "Content-Disposition": `attachment; filename="zenisports-my-data.json"`,
     },
   });
 }

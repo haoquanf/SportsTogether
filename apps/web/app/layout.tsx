@@ -6,7 +6,7 @@ import "./globals.css";
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Rally: play more, play better",
+  title: "ZeniSports: play more, play better",
   description: "AI coaching, lessons and local groups for badminton, ballroom dance and more.",
 };
 

@@ -3,7 +3,7 @@ import { BADMINTON_COMING, LESSONS } from "@/lib/lessons";
 import { Badge } from "@/components/avatar";
 import { Couple } from "@/components/lessons/couple";
 
-export const metadata = { title: "Lessons · Rally" };
+export const metadata = { title: "Lessons · ZeniSports" };
 
 export default function LessonsPage() {
   return (

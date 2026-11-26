@@ -1,4 +1,4 @@
-# SportsApp (working name "Rally")
+# ZeniSports (repo: SportsTogether)
 
 Investor MVP: badminton in one city. Local groups and events, short tutorials,
 and an AI coach that gives tips on uploaded clips.

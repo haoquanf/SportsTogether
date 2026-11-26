@@ -25,7 +25,7 @@ function Nav({ signedIn }: { signedIn: boolean }) {
   return (
     <header className="absolute inset-x-0 top-0 z-20">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
-        <Link href="/" className="flex items-center gap-2 text-xl font-bold text-white"><span aria-hidden>🏸</span> Rally</Link>
+        <Link href="/" className="flex items-center gap-2 text-xl font-bold text-white"><span aria-hidden>🏸</span> ZeniSports</Link>
         <nav className="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
           <a href="#sports" className="hover:text-white">Sports</a>
           <a href="#features" className="hover:text-white">Features</a>
@@ -167,7 +167,7 @@ export default async function Landing() {
           <p className="text-sm font-semibold uppercase tracking-widest text-brand-600">Built around your game</p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-5xl">Not another generic tutorial.</h2>
           <p className="mt-5 text-lg text-slate-600">
-            Videos online show you what a perfect smash looks like. Rally shows you what <em>your</em> smash looks like, measured joint by joint against a local coach, and tells you the one change that will make the biggest difference.
+            Videos online show you what a perfect smash looks like. ZeniSports shows you what <em>your</em> smash looks like, measured joint by joint against a local coach, and tells you the one change that will make the biggest difference.
           </p>
           <p className="mt-4 text-lg text-slate-600">
             Then it does what no tutorial can: it puts you on court with people at your level, a few minutes from home.
@@ -294,7 +294,7 @@ export default async function Landing() {
       <footer className="bg-[#040b08] py-12 text-sm text-slate-400">
         <div className="mx-auto flex max-w-6xl flex-wrap items-start justify-between gap-8 px-5">
           <div>
-            <p className="flex items-center gap-2 text-lg font-bold text-white"><span aria-hidden>🏸</span> Rally</p>
+            <p className="flex items-center gap-2 text-lg font-bold text-white"><span aria-hidden>🏸</span> ZeniSports</p>
             <p className="mt-2 max-w-xs">AI coaching, lessons and local groups for badminton, ballroom dance and more. Made in Boston.</p>
           </div>
           <div className="grid grid-cols-2 gap-x-12 gap-y-2">
@@ -308,7 +308,7 @@ export default async function Landing() {
           </div>
         </div>
         <div className="mx-auto mt-10 flex max-w-6xl flex-wrap justify-between gap-4 border-t border-white/10 px-5 pt-6">
-          <p>© {new Date().getFullYear()} Rally. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} ZeniSports. All rights reserved.</p>
           <p>Privacy policy and terms coming before public launch.</p>
         </div>
       </footer>
