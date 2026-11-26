@@ -1,4 +1,7 @@
-# Pose analyzer
+# Pose analyzer (prototype)
+
+The live AI coach now runs in the browser: see `apps/web/lib/coach/` and the `/coach` page.
+This Python version is kept for offline experiments.
 
 Python + MediaPipe Pose (Apache 2.0) + OpenCV + FFmpeg.
 
