@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { SetupBanner } from "@/components/setup-banner";
+import { ClickTracker } from "@/components/click-tracker";
 import "./globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -18,6 +20,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="min-h-screen">
         <SetupBanner />
         {children}
+        <ClickTracker />
+        <Analytics />
       </body>
     </html>
   );

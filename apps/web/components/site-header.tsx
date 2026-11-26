@@ -27,7 +27,7 @@ export async function SiteHeader() {
             <>
               <Link href="/lessons" className="font-medium hover:text-brand-700">Lessons</Link>
               <Link href="/login" className="font-medium hover:text-brand-700">Log in</Link>
-              <Link href="/signup" className="btn-primary py-1.5">Sign up</Link>
+              <Link href="/signup" data-track="Header: Sign up" className="btn-primary py-1.5">Sign up</Link>
             </>
           )}
         </nav>

@@ -18,7 +18,7 @@ export default function LessonsPage() {
         <ul className="grid gap-4 md:grid-cols-2">
           {LESSONS.filter((l) => l.sport === "ballroom").map((l) => (
             <li key={l.slug}>
-              <Link href={`/lessons/${l.slug}`} className="card grid h-full grid-cols-[1fr_110px] items-center gap-4 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-md">
+              <Link href={`/lessons/${l.slug}`} data-track={`Lesson: ${l.title}`} className="card grid h-full grid-cols-[1fr_110px] items-center gap-4 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-md">
                 <div>
                   <div className="flex flex-wrap gap-2"><Badge tone="green">Demo lesson</Badge><Badge>{l.level}</Badge><Badge>{l.minutes} min</Badge></div>
                   <h3 className="mt-3 text-lg font-semibold">{l.title}</h3>
@@ -38,7 +38,7 @@ export default function LessonsPage() {
 
       <section>
         <h2 className="mb-3 flex items-center gap-2 text-xl font-semibold"><span aria-hidden>🏸</span> Badminton</h2>
-        <Link href="/lessons/badminton-movement" className="card mb-4 grid items-center gap-4 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-md md:grid-cols-[1fr_auto]">
+        <Link href="/lessons/badminton-movement" data-track="Lesson: Badminton footwork (3D)" className="card mb-4 grid items-center gap-4 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-md md:grid-cols-[1fr_auto]">
           <div>
             <div className="flex flex-wrap gap-2"><Badge tone="green">Demo lesson</Badge><Badge>All levels</Badge><Badge>15 min</Badge><Badge tone="blue">Interactive 3D</Badge></div>
             <h3 className="mt-3 text-lg font-semibold">Footwork and full-body technique</h3>
@@ -46,7 +46,7 @@ export default function LessonsPage() {
           </div>
           <p className="text-sm font-medium text-brand-700">Start lesson →</p>
         </Link>
-        <Link href="/lessons/badminton-grips" className="card mb-4 grid items-center gap-4 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-md md:grid-cols-[1fr_auto]">
+        <Link href="/lessons/badminton-grips" data-track="Lesson: Badminton grips (3D)" className="card mb-4 grid items-center gap-4 transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-md md:grid-cols-[1fr_auto]">
           <div>
             <div className="flex flex-wrap gap-2"><Badge tone="green">Demo lesson</Badge><Badge>All levels</Badge><Badge>10 min</Badge><Badge tone="blue">Interactive 3D</Badge></div>
             <h3 className="mt-3 text-lg font-semibold">Grip and fingers: the hidden power in badminton</h3>

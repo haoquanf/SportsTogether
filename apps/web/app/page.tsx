@@ -40,7 +40,7 @@ function Nav({ signedIn }: { signedIn: boolean }) {
           ) : (
             <>
               <Link href="/login" className="font-medium text-slate-200 hover:text-white">Log in</Link>
-              <Link href="/signup" className="btn bg-brand-500 py-2 text-white hover:bg-brand-600">Sign up free</Link>
+              <Link href="/signup" data-track="Nav: Sign up free" className="btn bg-brand-500 py-2 text-white hover:bg-brand-600">Sign up free</Link>
             </>
           )}
         </div>
@@ -86,7 +86,7 @@ export default async function Landing() {
               Film a badminton stroke and get AI feedback next to a real coach in under a minute. Learn the Waltz step by step. Then find people near you to play or dance with tonight.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={signedIn ? "/home" : "/signup"} className="btn bg-brand-500 px-6 py-3 text-base text-white hover:bg-brand-600">
+              <Link href={signedIn ? "/home" : "/signup"} data-track={signedIn ? "Hero: Open the app" : "Hero: Get started free"} className="btn bg-brand-500 px-6 py-3 text-base text-white hover:bg-brand-600">
                 {signedIn ? "Open the app" : "Get started free"}
               </Link>
               <a href="#how" className="btn border border-white/25 px-6 py-3 text-base text-white hover:bg-white/10">How it works</a>
@@ -128,7 +128,7 @@ export default async function Landing() {
               <p className="mt-6 font-medium text-brand-400 group-hover:underline">Find a game →</p>
             </div>
           </Link>
-          <Link href="/lessons/ballroom-waltz-bronze-basics" className="group relative overflow-hidden rounded-3xl bg-[#14060f] p-7 text-white transition hover:-translate-y-1">
+          <Link href="/lessons/ballroom-waltz-bronze-basics" data-track="Sports: Waltz lesson" className="group relative overflow-hidden rounded-3xl bg-[#14060f] p-7 text-white transition hover:-translate-y-1">
             <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(244,114,182,0.35),transparent_60%)]" />
             <div className="relative">
               <p className="text-4xl" aria-hidden>💃</p>
@@ -240,8 +240,8 @@ export default async function Landing() {
               </p>
             </div>
             <div className="space-y-3">
-              <Link href="/signup" className="btn w-full bg-white py-3 text-base text-brand-700 hover:bg-brand-50">Join as a player</Link>
-              <Link href="/signup" className="btn w-full border border-white/40 py-3 text-base text-white hover:bg-white/10">Sign up as a coach or club</Link>
+              <Link href="/signup" data-track="Community: Join as a player" className="btn w-full bg-white py-3 text-base text-brand-700 hover:bg-brand-50">Join as a player</Link>
+              <Link href="/signup" data-track="Community: Coach or club sign-up" className="btn w-full border border-white/40 py-3 text-base text-white hover:bg-white/10">Sign up as a coach or club</Link>
             </div>
           </div>
         </div>

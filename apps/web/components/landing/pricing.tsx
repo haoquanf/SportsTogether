@@ -22,7 +22,7 @@ export function Pricing() {
           <h3 className="text-lg font-semibold">Free</h3>
           <p className="mt-2"><span className="text-4xl font-bold">$0</span> <span className="text-slate-500">forever</span></p>
           <p className="mt-2 text-slate-600">Everything you need to find games and try the AI coach.</p>
-          <Link href="/signup" className="btn-secondary mt-6 w-full">Start free</Link>
+          <Link href="/signup" data-track="Pricing: Start free (Free plan)" className="btn-secondary mt-6 w-full">Start free</Link>
           <ul className="mt-6 space-y-3 text-sm">{FREE.map((f) => <li key={f} className="flex gap-2"><span className="text-brand-600">✓</span>{f}</li>)}</ul>
         </div>
         <div className="relative rounded-3xl bg-ink p-8 text-white">
@@ -33,7 +33,7 @@ export function Pricing() {
           </p>
           <p className="mt-1 text-sm text-slate-400">{annual ? "$79 billed once a year" : "Billed monthly, cancel anytime"}</p>
           <p className="mt-2 text-slate-300">For players serious about improving.</p>
-          <Link href="/signup" className="btn mt-6 w-full bg-brand-500 text-white hover:bg-brand-600">Start free, upgrade anytime</Link>
+          <Link href="/signup" data-track="Pricing: Premium" className="btn mt-6 w-full bg-brand-500 text-white hover:bg-brand-600">Start free, upgrade anytime</Link>
           <ul className="mt-6 space-y-3 text-sm">{PREMIUM.map((f) => <li key={f} className="flex gap-2"><span className="text-brand-400">✓</span>{f}</li>)}</ul>
         </div>
       </div>
