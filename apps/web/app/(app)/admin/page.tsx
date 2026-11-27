@@ -16,6 +16,9 @@ type Stats = {
   clicks_by_day: { day: string; n: number }[];
   top_clicks: { name: string; n: number }[];
   top_pages: { path: string; n: number }[];
+  upgrade_requests?: number;
+  upgrade_requests_yearly?: number;
+  downgrade_requests?: number;
 };
 
 const DAYS = 30;
@@ -114,6 +117,18 @@ export default async function AdminPage() {
           <Bars rows={fillDays(s.signups_by_day)} label="Sign-ups" />
         </div>
       </section>
+
+      {s.upgrade_requests !== undefined && (
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Membership</h2>
+          <div className="grid gap-4 sm:grid-cols-3">
+            <Stat n={s.upgrade_requests} label="Asked to upgrade to Premium" />
+            <Stat n={s.upgrade_requests_yearly ?? 0} label="…of them chose yearly" />
+            <Stat n={s.downgrade_requests ?? 0} label="Asked to switch to Free" />
+          </div>
+          <p className="text-sm text-slate-500">To see who asked, open Supabase → Table Editor → plan_requests.</p>
+        </section>
+      )}
 
       <section className="space-y-4">
         <h2 className="text-xl font-semibold">Clicks</h2>

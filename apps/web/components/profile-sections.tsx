@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AVAILABILITY, FREE_ANALYSES_PER_MONTH, HANDEDNESS, PLAY_FORMATS, PREMIUM_ANALYSES_PER_MONTH, SKILL_LEVELS, SPORTS } from "@sportsapp/shared";
+import { AVAILABILITY, HANDEDNESS, PLAY_FORMATS, SKILL_LEVELS, SPORTS } from "@sportsapp/shared";
 import type { Profile } from "@/lib/auth";
 import { LAUNCH_TZ } from "@/lib/time";
 import { Avatar, Badge } from "./avatar";
@@ -71,24 +71,6 @@ export function GroupsList({ groups, emptyText }: { groups: { role: string; stat
         </li>
       ))}
     </ul>
-  );
-}
-
-export function MembershipCard({ profile }: { profile: Profile }) {
-  const premium = profile.plan === "premium";
-  return (
-    <section className="card">
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold">Membership</h2>
-        <Badge tone={premium ? "amber" : "slate"}>{premium ? "Premium" : "Free plan"}</Badge>
-      </div>
-      <ul className="mt-3 space-y-1 text-sm text-slate-700">
-        <li>✓ Groups, sessions and free lessons</li>
-        <li>✓ {premium ? PREMIUM_ANALYSES_PER_MONTH : FREE_ANALYSES_PER_MONTH} AI coach analyses a month</li>
-        <li className={premium ? "" : "text-slate-400"}>{premium ? "✓" : "–"} All premium lessons, progress history and side-by-side compare</li>
-      </ul>
-      {!premium && <p className="mt-3 text-sm text-slate-500">Premium ($9.99 a month) is coming soon.</p>}
-    </section>
   );
 }
 

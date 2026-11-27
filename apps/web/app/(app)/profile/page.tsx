@@ -1,27 +1,41 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { PROFILE_VISIBILITY } from "@sportsapp/shared";
 import { requireUser } from "@/lib/auth";
+import { createClient } from "@/lib/supabase/server";
+import { MembershipPlans, type PlanRequest } from "@/components/membership-plans";
 import { groupsForUser, myUpcomingEvents, sessionsPlayed } from "@/lib/groups";
 import { formatEventTime, LAUNCH_TZ } from "@/lib/time";
 import { Badge } from "@/components/avatar";
-import { CoachHistory, DetailList, GroupsList, MembershipCard, ProfileHeader, gameRows, label, memberSince } from "@/components/profile-sections";
+import { CoachHistory, DetailList, GroupsList, ProfileHeader, gameRows, memberSince } from "@/components/profile-sections";
 
-const NOTICES: Record<string, string> = { profile: "Profile saved.", password: "Password updated." };
+const NOTICES: Record<string, string> = {
+  profile: "Profile saved.",
+  password: "Password updated.",
+  plan: "Plan change requested.",
+  plan_cancelled: "Plan change request cancelled.",
+  plan_error: "We couldn't save your plan request. Please try again later.",
+};
 
 export default async function ProfilePage({ searchParams }: { searchParams: Promise<{ updated?: string }> }) {
   const { user, profile } = await requireUser();
   if (!profile?.onboarded) redirect("/onboarding");
   const { updated } = await searchParams;
   const [groups, upcoming, played] = await Promise.all([groupsForUser(user.id), myUpcomingEvents(user.id), sessionsPlayed(user.id)]);
-  const consent = profile.video_consent_at
-    ? `Given on ${new Date(profile.video_consent_at).toLocaleDateString("en-US", { dateStyle: "medium", timeZone: LAUNCH_TZ })}`
-    : "Not given yet (needed before using the AI coach)";
+  const { data: planRequest } = await (await createClient())
+    .from("plan_requests")
+    .select("plan, billing, created_at")
+    .eq("user_id", user.id)
+    .maybeSingle<NonNullable<PlanRequest>>();
+  const requestedOn = planRequest
+    ? new Date(planRequest.created_at).toLocaleDateString("en-US", { dateStyle: "medium", timeZone: LAUNCH_TZ })
+    : null;
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       {updated && NOTICES[updated] && (
-        <p role="status" className="rounded-lg bg-brand-50 p-3 font-medium text-brand-700">✓ {NOTICES[updated]}</p>
+        <p role="status" className={`rounded-lg p-3 font-medium ${updated.endsWith("error") ? "bg-red-50 text-red-700" : "bg-brand-50 text-brand-700"}`}>
+          {updated.endsWith("error") ? "" : "✓ "}{NOTICES[updated]}
+        </p>
       )}
 
       <ProfileHeader
@@ -92,22 +106,10 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
         </section>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <CoachHistory />
-        <MembershipCard profile={profile} />
-      </div>
+      <CoachHistory />
 
-      <section className="card">
-        <h2 className="mb-1 text-lg font-semibold">Privacy and your data</h2>
-        <DetailList
-          rows={[
-            ["Profile visible to", label(PROFILE_VISIBILITY, profile.show_profile_to)],
-            ["AI coach video consent", consent],
-            ["Your videos", "Private to you unless you choose to share them"],
-            ["Download your data", <a key="dl" href="/profile/export" className="font-medium text-brand-700">Download everything as a file</a>],
-          ]}
-        />
-      </section>
+      <MembershipPlans plan={profile.plan} request={planRequest ?? null} requestedOn={requestedOn} />
+
     </div>
   );
 }

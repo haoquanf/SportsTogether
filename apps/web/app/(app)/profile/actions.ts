@@ -93,3 +93,24 @@ async function saveProfileInner(formData: FormData): Promise<FormState> {
   revalidatePath("/", "layout");
   redirect(profile?.onboarded ? "/profile?updated=profile" : "/home?welcome=1");
 }
+
+/** Ask to change plan. Until card payments are connected the owner switches the plan by hand. */
+export async function requestPlan(formData: FormData) {
+  const { user } = await requireUser();
+  const plan = formData.get("plan") === "premium" ? "premium" : "free";
+  const billing = plan === "premium" ? (formData.get("billing") === "monthly" ? "monthly" : "yearly") : null;
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("plan_requests")
+    .upsert({ user_id: user.id, plan, billing, created_at: new Date().toISOString() });
+  revalidatePath("/profile");
+  redirect(error ? "/profile?updated=plan_error#membership" : "/profile?updated=plan#membership");
+}
+
+export async function cancelPlanRequest() {
+  const { user } = await requireUser();
+  const supabase = await createClient();
+  await supabase.from("plan_requests").delete().eq("user_id", user.id);
+  revalidatePath("/profile");
+  redirect("/profile?updated=plan_cancelled#membership");
+}
