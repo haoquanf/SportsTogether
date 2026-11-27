@@ -93,12 +93,3 @@ async function saveProfileInner(formData: FormData): Promise<FormState> {
   revalidatePath("/", "layout");
   redirect(profile?.onboarded ? "/profile?updated=profile" : "/home?welcome=1");
 }
-
-export async function deleteAccount(formData: FormData) {
-  await requireUser();
-  if (formData.get("confirm") !== "DELETE") redirect("/profile?error=confirm");
-  const supabase = await createClient();
-  await supabase.rpc("delete_my_account");
-  await supabase.auth.signOut();
-  redirect("/?deleted=1");
-}

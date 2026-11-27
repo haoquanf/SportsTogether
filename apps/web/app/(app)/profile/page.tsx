@@ -6,14 +6,13 @@ import { groupsForUser, myUpcomingEvents, sessionsPlayed } from "@/lib/groups";
 import { formatEventTime, LAUNCH_TZ } from "@/lib/time";
 import { Badge } from "@/components/avatar";
 import { CoachHistory, DetailList, GroupsList, MembershipCard, ProfileHeader, gameRows, label, memberSince } from "@/components/profile-sections";
-import { deleteAccount } from "./actions";
 
 const NOTICES: Record<string, string> = { profile: "Profile saved.", password: "Password updated." };
 
-export default async function ProfilePage({ searchParams }: { searchParams: Promise<{ updated?: string; error?: string }> }) {
+export default async function ProfilePage({ searchParams }: { searchParams: Promise<{ updated?: string }> }) {
   const { user, profile } = await requireUser();
   if (!profile?.onboarded) redirect("/onboarding");
-  const { updated, error } = await searchParams;
+  const { updated } = await searchParams;
   const [groups, upcoming, played] = await Promise.all([groupsForUser(user.id), myUpcomingEvents(user.id), sessionsPlayed(user.id)]);
   const consent = profile.video_consent_at
     ? `Given on ${new Date(profile.video_consent_at).toLocaleDateString("en-US", { dateStyle: "medium", timeZone: LAUNCH_TZ })}`
@@ -108,15 +107,6 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
             ["Download your data", <a key="dl" href="/profile/export" className="font-medium text-brand-700">Download everything as a file</a>],
           ]}
         />
-        <details className="mt-4 rounded-lg border border-red-200 p-4" open={error === "confirm"}>
-          <summary className="cursor-pointer text-sm font-medium text-slate-500">Delete my account</summary>
-          <p className="mt-3 mb-3 text-sm text-slate-600">This removes your profile, groups you belong to, RSVPs, comments and videos for good. Type DELETE to confirm.</p>
-          {error === "confirm" && <p role="alert" className="mb-2 text-sm text-red-600">Please type DELETE exactly.</p>}
-          <form action={deleteAccount} className="flex gap-2">
-            <input name="confirm" aria-label="Type DELETE to confirm" className="input max-w-40" autoComplete="off" />
-            <button className="btn border border-red-300 text-red-700 hover:bg-red-50">Delete my account</button>
-          </form>
-        </details>
       </section>
     </div>
   );

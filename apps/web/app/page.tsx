@@ -15,7 +15,7 @@ const FAQ = [
   ["Do I need any special equipment?", "No. Any phone camera works. Film from the side, about 3 to 5 metres away, with your whole body in the frame."],
   ["How accurate is the AI coach?", "It tracks 33 body points in every frame and compares your joint angles and timing with a coach doing the same stroke. Every tip comes from those measurements, not guesswork, and if your clip is hard to read, the app tells you instead of guessing."],
   ["Is it only for good players?", "Not at all. Groups, sessions and lessons are tagged from beginner to advanced, and tips are written in plain language, not jargon."],
-  ["Who can see my videos?", "Only you. Clips are private by default, used only to analyse your technique, and you can delete them, or your whole account, at any time."],
+  ["Who can see my videos?", "Only you. Clips are private by default, used only to analyse your technique, and you can delete them at any time."],
   ["Which sports can I use it for?", "Badminton and ballroom dance today, with basketball next. Groups and lessons work for every sport; the AI coach starts with badminton and adds ballroom next."],
   ["Which strokes does the AI coach analyse?", "In badminton we're starting with the forehand clear and the smash, and adding the drop shot, backhand clear and serve next."],
   ["Is it only in Boston?", "Groups and sessions launch in the Boston area first. The AI coach and lessons work anywhere."],
