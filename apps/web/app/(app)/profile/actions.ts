@@ -104,7 +104,7 @@ export async function requestPlan(formData: FormData) {
     .from("plan_requests")
     .upsert({ user_id: user.id, plan, billing, created_at: new Date().toISOString() });
   revalidatePath("/profile");
-  redirect(error ? "/profile?updated=plan_error#membership" : "/profile?updated=plan#membership");
+  redirect(error ? "/profile/membership?updated=plan_error" : "/profile/membership?updated=plan");
 }
 
 export async function cancelPlanRequest() {
@@ -112,5 +112,5 @@ export async function cancelPlanRequest() {
   const supabase = await createClient();
   await supabase.from("plan_requests").delete().eq("user_id", user.id);
   revalidatePath("/profile");
-  redirect("/profile?updated=plan_cancelled#membership");
+  redirect("/profile/membership?updated=plan_cancelled");
 }

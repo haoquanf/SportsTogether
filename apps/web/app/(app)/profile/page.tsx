@@ -1,19 +1,15 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
-import { createClient } from "@/lib/supabase/server";
-import { MembershipPlans, type PlanRequest } from "@/components/membership-plans";
+import { getPlanRequest } from "@/lib/plan";
 import { groupsForUser, myUpcomingEvents, sessionsPlayed } from "@/lib/groups";
-import { formatEventTime, LAUNCH_TZ } from "@/lib/time";
+import { formatEventTime } from "@/lib/time";
 import { Badge } from "@/components/avatar";
 import { CoachHistory, DetailList, GroupsList, ProfileHeader, gameRows, memberSince } from "@/components/profile-sections";
 
 const NOTICES: Record<string, string> = {
   profile: "Profile saved.",
   password: "Password updated.",
-  plan: "Plan change requested.",
-  plan_cancelled: "Plan change request cancelled.",
-  plan_error: "We couldn't save your plan request. Please try again later.",
 };
 
 export default async function ProfilePage({ searchParams }: { searchParams: Promise<{ updated?: string }> }) {
@@ -21,14 +17,8 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
   if (!profile?.onboarded) redirect("/onboarding");
   const { updated } = await searchParams;
   const [groups, upcoming, played] = await Promise.all([groupsForUser(user.id), myUpcomingEvents(user.id), sessionsPlayed(user.id)]);
-  const { data: planRequest } = await (await createClient())
-    .from("plan_requests")
-    .select("plan, billing, created_at")
-    .eq("user_id", user.id)
-    .maybeSingle<NonNullable<PlanRequest>>();
-  const requestedOn = planRequest
-    ? new Date(planRequest.created_at).toLocaleDateString("en-US", { dateStyle: "medium", timeZone: LAUNCH_TZ })
-    : null;
+  const { request: planRequest, requestedOn } = await getPlanRequest(user.id);
+  const premium = profile.plan === "premium";
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
@@ -108,7 +98,23 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
 
       <CoachHistory />
 
-      <MembershipPlans plan={profile.plan} request={planRequest ?? null} requestedOn={requestedOn} />
+      <section className="card" id="membership">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="text-lg font-semibold">Membership</h2>
+            <p className="text-sm text-slate-600">
+              You&apos;re on the <strong>{premium ? "Premium" : "Free"}</strong> plan
+              {premium ? ": 30 AI coach analyses a month and every premium lesson." : ": groups, sessions, free lessons and 3 AI coach analyses a month."}
+            </p>
+            {planRequest && (
+              <p className="mt-1 text-sm text-amber-700">
+                Pending: switch to {planRequest.plan === "premium" ? `Premium (${planRequest.billing ?? "monthly"})` : "Free"}, requested {requestedOn}.
+              </p>
+            )}
+          </div>
+          <Link href="/profile/membership" data-track="Profile: Update membership plan" className="btn-primary">Update membership plan</Link>
+        </div>
+      </section>
 
     </div>
   );

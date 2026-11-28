@@ -17,7 +17,7 @@ export function MembershipPlans({ plan, request, requestedOn }: { plan: string; 
     <section className="card" id="membership">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-lg font-semibold">Membership</h2>
+          <h2 className="text-lg font-semibold">Choose your plan</h2>
           <p className="text-sm text-slate-600">You&apos;re on the <strong>{premium ? "Premium" : "Free"}</strong> plan.</p>
         </div>
         <div className="flex rounded-full bg-slate-100 p-1 text-sm font-medium" role="group" aria-label="Billing">

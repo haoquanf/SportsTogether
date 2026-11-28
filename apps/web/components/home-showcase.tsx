@@ -110,7 +110,7 @@ export function HomeShowcase({ premium }: { premium: boolean }) {
               <h2 className="mt-4 text-2xl font-bold">Get 10× more coaching</h2>
               <p className="mt-2 text-slate-300">30 AI analyses a month instead of 3, side-by-side compare, full progress history and every premium lesson.</p>
               <p className="mt-4"><span className="text-3xl font-bold">$6.58</span> <span className="text-slate-400">/ month, billed yearly</span></p>
-              <Link href="/profile#membership" data-track="Home: See Premium" className="btn mt-5 bg-amber-400 font-semibold text-ink hover:bg-amber-300">See Premium</Link>
+              <Link href="/profile/membership" data-track="Home: See Premium" className="btn mt-5 bg-amber-400 font-semibold text-ink hover:bg-amber-300">See Premium</Link>
             </div>
           </section>
         )}
