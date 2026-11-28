@@ -22,7 +22,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
       {error && ERRORS[error] && <p role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{ERRORS[error]}</p>}
       {googleAuthEnabled && (
         <>
-          <GoogleButton />
+          <GoogleButton label="Log in with Google" />
           <Divider />
         </>
       )}

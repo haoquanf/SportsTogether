@@ -9,7 +9,7 @@ export default function SignUpPage() {
     <AuthCard title="Create your account" subtitle="Free forever for groups, events and 3 AI analyses a month.">
       {googleAuthEnabled && (
         <>
-          <GoogleButton />
+          <GoogleButton label="Sign up with Google" />
           <Divider />
         </>
       )}
