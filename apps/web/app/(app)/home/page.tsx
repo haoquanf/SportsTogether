@@ -7,11 +7,12 @@ import { formatEventTime } from "@/lib/time";
 import { fitsLevel, skillRange } from "@/lib/skill";
 import { Avatar, Badge } from "@/components/avatar";
 import { CoachScreen, PhoneFrame } from "@/components/landing/screens";
+import { HomeShowcase } from "@/components/home-showcase";
 
 const ACTIONS = [
   { href: "/groups", icon: "📍", title: "Find a game", text: "Groups and sessions near you", live: true },
   { href: null, icon: "🎥", title: "Analyse a clip", text: "AI feedback on your stroke", live: false },
-  { href: "/lessons", icon: "📚", title: "Lessons", text: "Try the ballroom Waltz demo", live: true },
+  { href: "/lessons", icon: "📚", title: "Lessons", text: "3D badminton and Waltz lessons", live: true },
   { href: "/profile", icon: "👤", title: "My profile", text: "Your game, groups and data", live: true },
 ];
 
@@ -125,6 +126,8 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           )}
         </section>
       </div>
+
+      <HomeShowcase premium={profile.plan === "premium"} />
     </div>
   );
 }
