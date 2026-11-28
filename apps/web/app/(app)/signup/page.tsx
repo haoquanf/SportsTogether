@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AuthCard, Divider } from "@/components/auth-card";
 import { AuthForm } from "@/components/auth-form";
 import { GoogleButton, googleAuthEnabled } from "@/components/google-button";
-import { signUp } from "@/app/(app)/auth/actions";
+import { resendConfirmation, signUp } from "@/app/(app)/auth/actions";
 
 export default function SignUpPage() {
   return (
@@ -16,10 +16,12 @@ export default function SignUpPage() {
       <AuthForm
         action={signUp}
         submitLabel="Sign up"
+        resend={resendConfirmation}
         fields={[
           { name: "name", label: "Your name", autoComplete: "name" },
           { name: "email", label: "Email", type: "email", autoComplete: "email" },
           { name: "password", label: "Password (8+ characters)", type: "password", autoComplete: "new-password" },
+          { name: "confirm", label: "Type the password again", type: "password", autoComplete: "new-password", matches: "password" },
         ]}
       />
       <p className="text-center text-sm text-slate-600">
