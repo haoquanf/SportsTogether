@@ -19,6 +19,9 @@ type Stats = {
   upgrade_requests?: number;
   upgrade_requests_yearly?: number;
   downgrade_requests?: number;
+  premium_members?: number;
+  paying_monthly?: number;
+  paying_yearly?: number;
 };
 
 const DAYS = 30;
@@ -121,12 +124,19 @@ export default async function AdminPage() {
       {s.upgrade_requests !== undefined && (
         <section className="space-y-4">
           <h2 className="text-xl font-semibold">Membership</h2>
+          {s.premium_members !== undefined && (
+            <div className="grid gap-4 sm:grid-cols-3">
+              <Stat n={s.premium_members} label="Premium members now" />
+              <Stat n={s.paying_monthly ?? 0} label="Paying monthly ($9.99)" />
+              <Stat n={s.paying_yearly ?? 0} label="Paying yearly ($79)" />
+            </div>
+          )}
           <div className="grid gap-4 sm:grid-cols-3">
             <Stat n={s.upgrade_requests} label="Asked to upgrade to Premium" />
             <Stat n={s.upgrade_requests_yearly ?? 0} label="…of them chose yearly" />
             <Stat n={s.downgrade_requests ?? 0} label="Asked to switch to Free" />
           </div>
-          <p className="text-sm text-slate-500">To see who asked, open Supabase → Table Editor → plan_requests.</p>
+          <p className="text-sm text-slate-500">To see who asked, open Supabase → Table Editor → plan_requests. Payments, refunds and revenue are in your Stripe dashboard.</p>
         </section>
       )}
 
