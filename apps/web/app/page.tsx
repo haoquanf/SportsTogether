@@ -309,7 +309,7 @@ export default async function Landing() {
         </div>
         <div className="mx-auto mt-10 flex max-w-6xl flex-wrap justify-between gap-4 border-t border-white/10 px-5 pt-6">
           <p>© {new Date().getFullYear()} ZeniSports. All rights reserved.</p>
-          <p>Privacy policy and terms coming before public launch.</p>
+          <p className="flex gap-5"><Link href="/privacy" className="hover:text-white">Privacy policy</Link><Link href="/terms" className="hover:text-white">Terms of service</Link></p>
         </div>
       </footer>
     </div>
